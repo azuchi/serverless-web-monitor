@@ -2,9 +2,9 @@
   "name": "serverless-web-monitor",
   "version": "0.0.1",
   "profile": "serverless-v0.4.2",
-  "location": "https://github.com/...",
+  "location": "https://github.com/azuchi/serverless-web-monitor",
   "author": "",
-  "description": "A Slick New Serverless Project",
+  "description": "A tool for website monitoring with Serverless Framework.",
   "custom": {},
   "plugins": []
 }
