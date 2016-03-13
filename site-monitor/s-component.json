@@ -1,5 +1,5 @@
 {
-  "name": "site",
+  "name": "site-monitor",
   "runtime": "nodejs",
   "custom": {}
 }
