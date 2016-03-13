@@ -1,8 +1,8 @@
 {
-  "name": "sites",
+  "name": "show",
   "customName": false,
   "customRole": false,
-  "handler": "sites/handler.handler",
+  "handler": "show/handler.handler",
   "timeout": 6,
   "memorySize": 1024,
   "custom": {
@@ -11,7 +11,7 @@
   },
   "endpoints": [
     {
-      "path": "sites",
+      "path": "show",
       "method": "GET",
       "type": "AWS",
       "authorizationType": "none",
