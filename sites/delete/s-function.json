@@ -11,15 +11,13 @@
   },
   "endpoints": [
     {
-      "path": "delete",
-      "method": "GET",
+      "path": "sites/{id}",
+      "method": "DELETE",
       "type": "AWS",
       "authorizationType": "none",
       "apiKeyRequired": false,
       "requestParameters": {},
-      "requestTemplates": {
-        "application/json": ""
-      },
+      "requestTemplates": "$${apiRequestTemplate}",
       "responses": {
         "400": {
           "statusCode": "400"
