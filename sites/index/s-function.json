@@ -18,7 +18,9 @@
       "apiKeyRequired": false,
       "requestParameters": {},
       "requestTemplates": {
-        "application/json": ""
+        "text/html": {
+          "body": "$input.json('$')"
+        }
       },
       "responses": {
         "400": {
@@ -27,10 +29,8 @@
         "default": {
           "statusCode": "200",
           "responseParameters": {},
-          "responseModels": {},
-          "responseTemplates": {
-            "application/json": ""
-          }
+          "responseModels": {"text/html": "Empty"},
+          "responseTemplates": {"text/html": "#set($inputRoot = $input.path('$'))$inputRoot"}
         }
       }
     }
