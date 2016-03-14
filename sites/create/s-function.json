@@ -11,8 +11,8 @@
   },
   "endpoints": [
     {
-      "path": "create",
-      "method": "GET",
+      "path": "sites",
+      "method": "POST",
       "type": "AWS",
       "authorizationType": "none",
       "apiKeyRequired": false,

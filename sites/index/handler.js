@@ -15,8 +15,8 @@ var lib = require('../lib');
 
 // Lambda Handler
 module.exports.handler = function(event, context) {
-
-  lib.respond(event, function(error, response) {
-    return context.done(error, response);
-  });
+  var response = {
+    message: "show index"
+  };
+  return context.done(null, response);
 };

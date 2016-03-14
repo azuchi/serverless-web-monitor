@@ -11,7 +11,7 @@
   },
   "endpoints": [
     {
-      "path": "index",
+      "path": "sites",
       "method": "GET",
       "type": "AWS",
       "authorizationType": "none",
