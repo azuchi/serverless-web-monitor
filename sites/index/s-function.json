@@ -19,7 +19,6 @@
       "requestParameters": {},
       "requestTemplates": {
         "application/json": {
-          "body": "$input.json('$')",
           "stage": "$context.stage"
         }
       },

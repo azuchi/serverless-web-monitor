@@ -18,12 +18,7 @@
       "apiKeyRequired": false,
       "requestParameters": {},
       "requestTemplates": {
-        "text/html": {
-          "body": "$input.json('$')",
-          "stage": "$context.stage"
-        },
         "application/json": {
-          "body": "$input.json('$')",
           "stage": "$context.stage"
         }
       },
