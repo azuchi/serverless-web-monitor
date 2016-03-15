@@ -1,0 +1,39 @@
+{
+  "name": "new",
+  "customName": false,
+  "customRole": false,
+  "handler": "new/handler.handler",
+  "timeout": 6,
+  "memorySize": 128,
+  "custom": {
+    "excludePatterns": [],
+    "envVars": []
+  },
+  "endpoints": [
+    {
+      "path": "sites/new",
+      "method": "GET",
+      "type": "AWS",
+      "authorizationType": "none",
+      "apiKeyRequired": false,
+      "requestParameters": {},
+      "requestTemplates": {
+        "text/html": {
+          "body": "$input.json('$')"
+        }
+      },
+      "responses": {
+        "400": {
+          "statusCode": "400"
+        },
+        "default": {
+          "statusCode": "200",
+          "responseParameters": {},
+          "responseModels": {"text/html": "Empty"},
+          "responseTemplates": {"text/html": "#set($inputRoot = $input.path('$'))$inputRoot"}
+        }
+      }
+    }
+  ],
+  "events": []
+}

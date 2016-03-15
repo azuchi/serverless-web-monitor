@@ -10,7 +10,7 @@ module.exports.respond = function(event, cb) {
   return cb(null, response);
 };
 
-const path = require('path'),
+var path = require('path'),
   fs = require('fs'),
   ejs = require('ejs');
 
