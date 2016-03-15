@@ -19,3 +19,13 @@ module.exports.renderTemplate = function(template, params){
   var html = fs.readFileSync(filePath, 'UTF-8');
   return ejs.render(html, params)
 };
+
+module.exports.formParams = function(paramStr) {
+  formParams = {};
+  params = paramStr.split("&");
+  params.forEach(function (data) {
+    pair = data.split("=");
+    formParams[pair[0]] = pair[1];
+  });
+  return formParams;
+};

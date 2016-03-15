@@ -19,7 +19,7 @@
       "requestParameters": {},
       "requestTemplates": {
         "application/x-www-form-urlencoded": {
-          "body": "$input.json('$')",
+          "data": "$input.json('$')",
           "stage": "$context.stage"
         }
       },
