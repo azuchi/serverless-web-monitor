@@ -4,7 +4,7 @@
   "customRole": false,
   "handler": "delete/handler.handler",
   "timeout": 6,
-  "memorySize": 1024,
+  "memorySize": 128,
   "custom": {
     "excludePatterns": [],
     "envVars": []
