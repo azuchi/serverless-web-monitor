@@ -15,7 +15,7 @@ var lib = require('../lib');
 
 // Lambda Handler
 module.exports.handler = function(event, context) {
-  context.succeed('<html><body>hoge</body></html>');
-
+  var html = lib.renderTemplate("index/index.html", {hoge: 'fugefuge', title:'Site List'});
+  context.succeed(html);
   return context.done();
 };
