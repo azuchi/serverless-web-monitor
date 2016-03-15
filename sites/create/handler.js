@@ -12,11 +12,10 @@ var ServerlessHelpers = require('serverless-helpers-js').loadEnv();
 
 // Require Logic
 var lib = require('../lib');
-
+var util = require('util');
 // Lambda Handler
 module.exports.handler = function(event, context) {
-
-  lib.respond(event, function(error, response) {
-    return context.done(error, response);
-  });
+  console.log(util.inspect(event,{ showHidden: true, depth: null }));
+  console.log(util.inspect(context,{ showHidden: true, depth: null }));
+  context.succeed({location: "/" + event.stage + "/sites/"});
 };

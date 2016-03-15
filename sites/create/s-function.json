@@ -18,18 +18,16 @@
       "apiKeyRequired": false,
       "requestParameters": {},
       "requestTemplates": {
-        "application/json": ""
+        "application/x-www-form-urlencoded": {
+          "body": "$input.json('$')",
+          "stage": "$context.stage"
+        }
       },
       "responses": {
-        "400": {
-          "statusCode": "400"
-        },
         "default": {
-          "statusCode": "200",
-          "responseParameters": {},
-          "responseModels": {},
-          "responseTemplates": {
-            "application/json": ""
+          "statusCode": "302",
+          "responseParameters": {
+            "method.response.header.Location": "integration.response.body.location"
           }
         }
       }
