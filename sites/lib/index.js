@@ -12,6 +12,7 @@ module.exports.respond = function(event, cb) {
 
 var path = require('path'),
   fs = require('fs'),
+  qs = require('qs'),
   ejs = require('ejs');
 
 module.exports.renderTemplate = function(template, params){
@@ -21,11 +22,5 @@ module.exports.renderTemplate = function(template, params){
 };
 
 module.exports.formParams = function(paramStr) {
-  formParams = {};
-  params = paramStr.split("&");
-  params.forEach(function (data) {
-    pair = data.split("=");
-    formParams[pair[0]] = pair[1];
-  });
-  return formParams;
+  return qs.parse(paramStr);
 };

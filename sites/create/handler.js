@@ -12,8 +12,15 @@ var ServerlessHelpers = require('serverless-helpers-js').loadEnv();
 
 // Require Logic
 var lib = require('../lib');
+var dynamo = require('../lib/dynamo');
+
 // Lambda Handler
 module.exports.handler = function(event, context) {
-  var site = lib.formParams(event.data)['site'];
-  context.succeed({location: "/" + event.stage + "/sites/"});
+  var params = lib.formParams(event.data);
+  var site = {"name": params['name'], "url": params['site']};
+  console.log(site);
+  dynamo.createSite(site).then(function(result){
+    console.log(result);
+    context.succeed({location: "/" + event.stage + "/sites/"});
+  });
 };

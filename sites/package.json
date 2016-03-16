@@ -12,6 +12,9 @@
   "keywords": [],
   "devDependencies": {},
   "dependencies": {
+    "uuid": "^2.0.1",
+    "qs": "^6.1.0",
+    "bluebird": "^3.3.4",
     "serverless-helpers-js": "~0.1.0",
     "ejs": "^2.3.4"
   }
