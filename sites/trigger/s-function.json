@@ -1,0 +1,39 @@
+{
+  "name": "trigger",
+  "customName": false,
+  "customRole": false,
+  "handler": "trigger/handler.handler",
+  "timeout": 6,
+  "memorySize": 128,
+  "custom": {
+    "excludePatterns": [],
+    "envVars": []
+  },
+  "endpoints": [
+    {
+      "path": "sites/trigger",
+      "method": "GET",
+      "type": "AWS",
+      "authorizationType": "none",
+      "apiKeyRequired": false,
+      "requestParameters": {},
+      "requestTemplates": {
+        "application/json": ""
+      },
+      "responses": {
+        "400": {
+          "statusCode": "400"
+        },
+        "default": {
+          "statusCode": "200",
+          "responseParameters": {},
+          "responseModels": {},
+          "responseTemplates": {
+            "application/json": ""
+          }
+        }
+      }
+    }
+  ],
+  "events": []
+}

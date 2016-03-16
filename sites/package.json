@@ -12,6 +12,8 @@
   "keywords": [],
   "devDependencies": {},
   "dependencies": {
+    "q": "^1.4.1",
+    "request-promise": "^2.0.1",
     "uuid": "^2.0.1",
     "qs": "^6.1.0",
     "bluebird": "^3.3.4",
