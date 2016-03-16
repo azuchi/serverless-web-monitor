@@ -12,10 +12,14 @@ var ServerlessHelpers = require('serverless-helpers-js').loadEnv();
 
 // Require Logic
 var lib = require('../lib');
+var dynamo = require('../lib/dynamo');
 
 // Lambda Handler
 module.exports.handler = function(event, context) {
-  var html = lib.renderTemplate("index/index.html", {stage: event.stage});
-  context.succeed(html);
-  return context.done();
+  dynamo.getSites().then(function (sites) {
+    console.log(sites);
+    var html = lib.renderTemplate("index/index.html", {stage: event.stage, sites: sites});
+    context.succeed(html);
+    return context.done();
+  });
 };

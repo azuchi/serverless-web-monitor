@@ -30,18 +30,18 @@
           <div class="col-md-12">
             <table class="table">
               <thead>
-              <tr>
-                <th>#</th>
-                <th>Web Site</th>
-              </tr>
+                <tr>
+                  <th>Name</th>
+                  <th>Web Site</th>
+                </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>1</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
+                <% sites.forEach(function(site){ %>
+                <tr>
+                  <td><%= site.name%></td>
+                  <td><%= site.url%></td>
+                </tr>
+                <% }) %>
               </tbody>
             </table>
           </div>
