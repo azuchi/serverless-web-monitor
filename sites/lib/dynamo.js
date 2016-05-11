@@ -8,7 +8,7 @@ const dynamoConfig = {
 };
 const docClient = new AWS.DynamoDB.DocumentClient(dynamoConfig);
 const stage = process.env.SERVERLESS_STAGE;
-const projectName = process.env.SERVERLESS_PROJECT_NAME;
+const projectName = process.env.SERVERLESS_PROJECT;
 const sitesTable = projectName + '-sites-' + stage;
 
 module.exports.createSite = function(site) {
