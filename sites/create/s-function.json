@@ -1,10 +1,13 @@
 {
   "name": "create",
+  "runtime": "nodejs",
+  "description": "Serverless Lambda function for project: serverless-web-monitor",
   "customName": false,
   "customRole": false,
   "handler": "create/handler.handler",
   "timeout": 6,
   "memorySize": 128,
+  "authorizer": {},
   "custom": {
     "excludePatterns": [],
     "envVars": []
@@ -15,6 +18,7 @@
       "method": "POST",
       "type": "AWS",
       "authorizationType": "none",
+      "authorizerFunction": false,
       "apiKeyRequired": false,
       "requestParameters": {},
       "requestTemplates": {
@@ -33,5 +37,14 @@
       }
     }
   ],
-  "events": []
+  "events": [],
+  "environment": {
+    "SERVERLESS_PROJECT": "${project}",
+    "SERVERLESS_STAGE": "${stage}",
+    "SERVERLESS_REGION": "${region}"
+  },
+  "vpc": {
+    "securityGroupIds": [],
+    "subnetIds": []
+  }
 }

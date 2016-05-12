@@ -1,7 +1,7 @@
 {
   "name": "serverless-web-monitor",
   "version": "0.0.1",
-  "profile": "serverless-v0.4.2",
+  "profile": "serverless-v0.5.5",
   "location": "https://github.com/azuchi/serverless-web-monitor",
   "author": "",
   "description": "A tool for website monitoring with Serverless Framework.",
