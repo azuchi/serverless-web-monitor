@@ -78,6 +78,13 @@
         },
         "TableName": "${project}-sites-${stage}"
       }
+    },
+    "SitesSNS": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "DisplayName": "${project}-sites-${stage}",
+        "TopicName": "${project}-sites-${stage}"
+      }
     }
   },
   "Outputs": {
