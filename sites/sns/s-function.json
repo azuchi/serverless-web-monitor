@@ -6,7 +6,7 @@
   "customRole": false,
   "handler": "handler.handler",
   "timeout": 6,
-  "memorySize": 1024,
+  "memorySize": 128,
   "authorizer": {},
   "custom": {
     "excludePatterns": []
@@ -14,7 +14,7 @@
   "endpoints": [
     {
       "path": "sns",
-      "method": "GET",
+      "method": "POST",
       "type": "AWS",
       "authorizationType": "none",
       "authorizerFunction": false,
@@ -44,7 +44,8 @@
   "environment": {
     "SERVERLESS_PROJECT": "${project}",
     "SERVERLESS_STAGE": "${stage}",
-    "SERVERLESS_REGION": "${region}"
+    "SERVERLESS_REGION": "${region}",
+    "SNS_TOPIC_ARN": "${sitesSNSTopicArn}"
   },
   "vpc": {
     "securityGroupIds": [],
