@@ -4,7 +4,7 @@
   "description": "Serverless Lambda function for project: serverless-web-monitor",
   "customName": false,
   "customRole": false,
-  "handler": "handler.handler",
+  "handler": "sns/handler.handler",
   "timeout": 6,
   "memorySize": 128,
   "authorizer": {},
@@ -13,7 +13,7 @@
   },
   "endpoints": [
     {
-      "path": "sns",
+      "path": "sites/sns",
       "method": "POST",
       "type": "AWS",
       "authorizationType": "none",
@@ -21,7 +21,11 @@
       "apiKeyRequired": false,
       "requestParameters": {},
       "requestTemplates": {
-        "application/json": ""
+        "application/json": {
+          "body": "$input.json('$')",
+          "queryParams": "$input.params().querystring",
+          "pathParamas": "$input.params().path"
+        }
       },
       "responses": {
         "400": {
