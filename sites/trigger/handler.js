@@ -11,15 +11,17 @@
 var ServerlessHelpers = require('serverless-helpers-js').loadEnv();
 
 // Require Logic
-var lib = require('../lib');
 var dynamo = require('../lib/dynamo');
+var probe = require('../lib/lambda');
 
 // Lambda Handler
 module.exports.handler = function(event, context) {
+
   dynamo.getSites().then(function (sites) {
-    lib.checkSites(sites).then(function(supposedDataFromAllPromises){
-      console.log("->", supposedDataFromAllPromises);
-    }).catch(function(e){console.log(e)});
+    sites.forEach(function (site) {
+      console.log(site);
+      lambda.checkSite(site);
+    });
     var response = {
       message: "Site monitoring executed!"
     };
