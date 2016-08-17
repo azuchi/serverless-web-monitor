@@ -1,6 +1,7 @@
 /**
  * Lib
  */
+'use strict';
 
 module.exports.respond = function(event, cb) {
   var response = {

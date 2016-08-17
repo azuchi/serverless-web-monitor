@@ -1,25 +1,14 @@
 'use strict';
 
-/**
- * Serverless Module: Lambda Handler
- * - Your lambda functions should be a thin wrapper around your own separate
- * modules, to keep your code testable, reusable and AWS independent
- * - 'serverless-helpers-js' module is required for Serverless ENV var support.  Hopefully, AWS will add ENV support to Lambda soon :)
- */
-
-// Require Serverless ENV vars
-var ServerlessHelpers = require('serverless-helpers-js').loadEnv();
-
 // Require Logic
 var lib = require('../lib');
 var dynamo = require('../lib/dynamo');
 
 // Lambda Handler
-module.exports.handler = function(event, context) {
+module.exports.handler = function(event, context, cb) {
   dynamo.getSites().then(function (sites) {
     console.log(sites);
     var html = lib.renderTemplate("index/index.html", {stage: event.stage, sites: sites});
-    context.succeed(html);
-    return context.done();
+    return cb(null, html);
   });
 };

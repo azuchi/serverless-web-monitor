@@ -1,4 +1,5 @@
-const Promise = require('bluebird');
+'use strict';
+
 const AWS = require('aws-sdk');
 
 const snsConfig = {
@@ -14,7 +15,7 @@ module.exports.postSNS = function(msg) {
   return new Promise(function(resolve, reject) {
     console.log(msg.Subject);
     console.log(msg.Message);
-    var params = {
+    const params = {
       Message: msg.Message,
       Subject: msg.Subject,
       TopicArn: snsTopicArn

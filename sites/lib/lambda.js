@@ -1,4 +1,5 @@
-const Promise = require('bluebird');
+'use strict';
+
 const request = require('request');
 const AWS = require('aws-sdk');
 
@@ -13,7 +14,7 @@ const lambda = new AWS.Lambda();
 
 module.exports.checkSite = function(site) {
   return new Promise(function(resolve, reject) {
-    var params = {
+    const params = {
       FunctionName: projectName + '-probe',
       InvocationType: 'Event',
       LogType: 'Tail',
