@@ -12,7 +12,7 @@ var ServerlessHelpers = require('serverless-helpers-js').loadEnv();
 
 // Require Logic
 var dynamo = require('../lib/dynamo');
-var probe = require('../lib/lambda');
+var lambda = require('../lib/lambda');
 
 // Lambda Handler
 module.exports.handler = function(event, context) {
