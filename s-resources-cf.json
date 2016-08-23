@@ -46,6 +46,13 @@
                 "*"
               ],
               "Resource": "arn:aws:dynamodb:${region}:*:table/${project}-sites-${stage}"
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "lambda:InvokeFunction"
+              ],
+              "Resource": "arn:aws:lambda:${region}:*:*"
             }
           ]
         },
@@ -78,6 +85,13 @@
         },
         "TableName": "${project}-sites-${stage}"
       }
+    },
+    "SitesSNS": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "DisplayName": "${project}-sites-${stage}",
+        "TopicName": "${project}-sites-${stage}"
+      }
     }
   },
   "Outputs": {
@@ -88,6 +102,12 @@
           "IamRoleLambda",
           "Arn"
         ]
+      }
+    },
+    "SitesSNSTopicArn": {
+      "Description": "ARN of the SNS Topic",
+      "Value": {
+        "Ref": "SitesSNS"
       }
     }
   }

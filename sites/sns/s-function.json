@@ -1,20 +1,19 @@
 {
-  "name": "create",
+  "name": "sns",
   "runtime": "nodejs4.3",
   "description": "Serverless Lambda function for project: serverless-web-monitor",
   "customName": false,
   "customRole": false,
-  "handler": "create/handler.handler",
+  "handler": "sns/handler.handler",
   "timeout": 6,
   "memorySize": 128,
   "authorizer": {},
   "custom": {
-    "excludePatterns": [],
-    "envVars": []
+    "excludePatterns": []
   },
   "endpoints": [
     {
-      "path": "sites",
+      "path": "sites/sns",
       "method": "POST",
       "type": "AWS",
       "authorizationType": "none",
@@ -22,16 +21,24 @@
       "apiKeyRequired": false,
       "requestParameters": {},
       "requestTemplates": {
-        "application/x-www-form-urlencoded": {
-          "data": "$input.json('$')",
-          "stage": "$context.stage"
+        "application/json": {
+          "body": "$input.json('$')",
+          "queryParams": "$input.params().querystring",
+          "pathParamas": "$input.params().path"
         }
       },
       "responses": {
+        "400": {
+          "statusCode": "400"
+        },
         "default": {
-          "statusCode": "302",
-          "responseParameters": {
-            "method.response.header.Location": "integration.response.body.location"
+          "statusCode": "200",
+          "responseParameters": {},
+          "responseModels": {
+            "application/json;charset=UTF-8": "Empty"
+          },
+          "responseTemplates": {
+            "application/json;charset=UTF-8": ""
           }
         }
       }
@@ -41,7 +48,8 @@
   "environment": {
     "SERVERLESS_PROJECT": "${project}",
     "SERVERLESS_STAGE": "${stage}",
-    "SERVERLESS_REGION": "${region}"
+    "SERVERLESS_REGION": "${region}",
+    "SNS_TOPIC_ARN": "${sitesSNSTopicArn}"
   },
   "vpc": {
     "securityGroupIds": [],

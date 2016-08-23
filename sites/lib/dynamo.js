@@ -1,4 +1,5 @@
-const Promise = require('bluebird');
+'use strict';
+
 const AWS = require('aws-sdk');
 const uuid = require('uuid');
 
@@ -14,7 +15,7 @@ const sitesTable = projectName + '-sites-' + stage;
 module.exports.createSite = function(site) {
   return new Promise(function(resolve, reject) {
     site['id'] = uuid.v1();
-    var params = {
+    const params = {
       TableName: sitesTable,
       Item: site
     };
@@ -27,7 +28,7 @@ module.exports.createSite = function(site) {
 
 module.exports.getSites = function() {
   return new Promise(function(resolve, reject) {
-    var params = {
+    const params = {
       TableName: sitesTable,
       AttributesToGet: [
         'name',

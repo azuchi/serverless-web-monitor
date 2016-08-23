@@ -1,0 +1,25 @@
+{
+  "name": "probe",
+  "runtime": "nodejs4.3",
+  "description": "Serverless Lambda function for project: serverless-web-monitor",
+  "customName": false,
+  "customRole": false,
+  "handler": "probe/handler.handler",
+  "timeout": 6,
+  "memorySize": 128,
+  "authorizer": {},
+  "custom": {
+    "excludePatterns": []
+  },
+  "endpoints": [],
+  "events": [],
+  "environment": {
+    "SERVERLESS_PROJECT": "${project}",
+    "SERVERLESS_STAGE": "${stage}",
+    "SERVERLESS_REGION": "${region}"
+  },
+  "vpc": {
+    "securityGroupIds": [],
+    "subnetIds": []
+  }
+}

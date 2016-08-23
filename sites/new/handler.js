@@ -1,21 +1,10 @@
 'use strict';
 
-/**
- * Serverless Module: Lambda Handler
- * - Your lambda functions should be a thin wrapper around your own separate
- * modules, to keep your code testable, reusable and AWS independent
- * - 'serverless-helpers-js' module is required for Serverless ENV var support.  Hopefully, AWS will add ENV support to Lambda soon :)
- */
-
-// Require Serverless ENV vars
-var ServerlessHelpers = require('serverless-helpers-js').loadEnv();
-
 // Require Logic
-var lib = require('../lib');
+const lib = require('../lib');
 
 // Lambda Handler
-module.exports.handler = function(event, context) {
-  var html = lib.renderTemplate("new/new.html", {stage: event.stage});
-  context.succeed(html);
-  return context.done();
+module.exports.handler = function(event, context, cb) {
+  const html = lib.renderTemplate("new/new.html", {stage: event.stage});
+  return cb(null, html);
 };
