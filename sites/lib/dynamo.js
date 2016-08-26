@@ -31,8 +31,10 @@ module.exports.getSites = function() {
     const params = {
       TableName: sitesTable,
       AttributesToGet: [
+        'id',
         'name',
-        'url'
+        'url',
+        'code'
       ]
     };
     docClient.scan(params, function(err, data) {
