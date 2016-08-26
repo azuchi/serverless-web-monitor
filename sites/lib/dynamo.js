@@ -31,13 +31,36 @@ module.exports.getSites = function() {
     const params = {
       TableName: sitesTable,
       AttributesToGet: [
+        'id',
         'name',
-        'url'
+        'url',
+        'code'
       ]
     };
     docClient.scan(params, function(err, data) {
       if (err) return reject(err);
       return resolve(data["Items"]);
+    });
+  });
+};
+
+module.exports.updateSiteState = function(site) {
+  return new Promise(function(resolve, reject) {
+    const params = {
+      TableName: sitesTable,
+      Key: {
+        "id": site.site.id
+      },
+      UpdateExpression: "set code = :code",
+      ExpressionAttributeValues: {
+        ":code":site.code
+      },
+      ReturnValues:"UPDATED_NEW"
+    };
+    console.log("Updating site statusCode...");
+    docClient.update(params, function(err, data) {
+      if (err) return reject(err);
+      return resolve(data);
     });
   });
 };
