@@ -13,17 +13,18 @@ const snsTopicArn = process.env.SNS_TOPIC_ARN;
 
 module.exports.postSNS = function(msg) {
   return new Promise(function(resolve, reject) {
-    console.log(msg.Subject);
-    console.log(msg.Message);
     const params = {
       Message: msg.Message,
       Subject: msg.Subject,
       TopicArn: snsTopicArn
     };
+    console.log("Start SNS publish");
     sns.publish(params, function(err, data){
-      console.log(data);
-      if (err) return reject(err);
-      return resolve(data);
+      if (err) console.log(err, err.stack);
+      else {
+        console.log(data);
+        return resolve("ok");
+      }
     });
   });
 };
