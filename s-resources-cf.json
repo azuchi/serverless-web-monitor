@@ -53,6 +53,13 @@
                 "lambda:InvokeFunction"
               ],
               "Resource": "arn:aws:lambda:${region}:*:*"
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "sns:Publish"
+              ],
+              "Resource": "arn:aws:sns:${region}:*:${project}-sites-${stage}"
             }
           ]
         },
