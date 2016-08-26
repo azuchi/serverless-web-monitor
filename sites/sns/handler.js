@@ -1,16 +1,19 @@
 'use strict';
 
 // Require Logic
-var sns = require('../lib/sns');
+const sns = require('../lib/sns');
 
 // Lambda Handler
-module.exports.handler = function(event, context) {
+module.exports.handler = function(event, context, cb) {
   console.log(event.data);
-  var params = event.data;
-  var msg = {
+  const params = event.data;
+  const msg = {
     "Subject": "[" + params['state'] + "] " + params['name'],
     "Message": params['state'] + ": " + params['name'] + "\n URL: " + params['url'] + "\n Reason: " + params['reason']
   }
   sns.postSNS(msg);
-  return context.done;
+
+  return cb(null, {
+    message: "SNS function executed!"
+  });
 }
