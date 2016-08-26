@@ -3,6 +3,7 @@
 const rp = require('request-promise');
 const errors = require('request-promise/errors');
 const dynamo = require('../lib/dynamo');
+const lambda = require('../lib/lambda');
 
 module.exports.handler = function(event, context, cb) {
   return new Promise(function(resolve, reject) {
@@ -11,6 +12,7 @@ module.exports.handler = function(event, context, cb) {
       const array = {
         site: event,
         date: response.headers.date,
+        state: "OK",
         code: statusCode,
         message: response.statusMessage
       };
@@ -20,6 +22,7 @@ module.exports.handler = function(event, context, cb) {
       const array = {
         site: event,
         date: error.response.headers.date,
+        state: "Fail",
         code: statusCode,
         message: error.error
       };
@@ -29,6 +32,7 @@ module.exports.handler = function(event, context, cb) {
       const array = {
         site: event,
         date: now,
+        state: "Fail",
         code: error.error.code,
         message: error.message
       };
@@ -39,6 +43,7 @@ module.exports.handler = function(event, context, cb) {
     if (event.code == undefined || event.code != array.code) {
       console.log("Accessing DynamoDB...");
       dynamo.updateSiteState(array);
+      lambda.callSNS(array);
     }
     return resolve(null, array);
   });

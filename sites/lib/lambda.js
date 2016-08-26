@@ -28,3 +28,20 @@ module.exports.checkSite = function(site) {
     return resolve('ok');
   });
 };
+
+module.exports.callSNS = function(message) {
+  return new Promise(function(resolve, reject) {
+    const params = {
+      FunctionName: projectName + '-sns',
+      InvocationType: 'Event',
+      LogType: 'Tail',
+      Payload: JSON.stringify(message)
+    }
+    console.log("Calling SNS function...");
+    lambda.invoke(params, function(err, data) {
+      if(err) console.log(err, err.stack);
+      else console.log("SNS function called successfully!");
+    });
+    return resolve('ok');
+  });
+};
