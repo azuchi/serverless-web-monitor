@@ -11,7 +11,7 @@ module.exports.handler = function(event, context, cb) {
   console.log(site);
   dynamo.createSite(site).then(function(result){
     return cb(null, {
-      location: "/" + event.stage + "/sites/"
+      location: "sites/"
     });
   });
 };
