@@ -14,14 +14,18 @@
   },
   "endpoints": [
     {
-      "path": "sites/{id}",
-      "method": "DELETE",
+      "path": "sites/delete",
+      "method": "GET",
       "type": "AWS",
       "authorizationType": "none",
       "authorizerFunction": false,
       "apiKeyRequired": false,
       "requestParameters": {},
-      "requestTemplates": "$${apiRequestTemplate}",
+      "requestTemplates": {
+        "application/json": {
+          "stage": "$context.stage"
+        }
+      },
       "responses": {
         "400": {
           "statusCode": "400"
@@ -29,10 +33,8 @@
         "default": {
           "statusCode": "200",
           "responseParameters": {},
-          "responseModels": {},
-          "responseTemplates": {
-            "application/json": ""
-          }
+          "responseModels": {"text/html": "Empty"},
+          "responseTemplates": {"text/html": "#set($inputRoot = $input.path('$'))$inputRoot"}
         }
       }
     }
