@@ -1,10 +1,10 @@
 {
-  "name": "delete",
+  "name": "remove",
   "runtime": "nodejs4.3",
   "description": "Serverless Lambda function for project: serverless-web-monitor",
   "customName": false,
   "customRole": false,
-  "handler": "delete/handler.handler",
+  "handler": "remove/handler.handler",
   "timeout": 6,
   "memorySize": 128,
   "authorizer": {},
@@ -14,27 +14,25 @@
   },
   "endpoints": [
     {
-      "path": "sites/delete",
-      "method": "GET",
+      "path": "sites/remove",
+      "method": "POST",
       "type": "AWS",
       "authorizationType": "none",
       "authorizerFunction": false,
       "apiKeyRequired": false,
       "requestParameters": {},
       "requestTemplates": {
-        "application/json": {
+        "application/x-www-form-urlencoded": {
+          "data": "$input.json('$')",
           "stage": "$context.stage"
         }
       },
       "responses": {
-        "400": {
-          "statusCode": "400"
-        },
         "default": {
-          "statusCode": "200",
-          "responseParameters": {},
-          "responseModels": {"text/html": "Empty"},
-          "responseTemplates": {"text/html": "#set($inputRoot = $input.path('$'))$inputRoot"}
+          "statusCode": "302",
+          "responseParameters": {
+            "method.response.header.Location": "integration.response.body.location"
+          }
         }
       }
     }

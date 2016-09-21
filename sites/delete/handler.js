@@ -1,12 +1,14 @@
 'use strict';
 
 // Require Logic
-var lib = require('../lib');
+const lib = require('../lib');
+const dynamo = require('../lib/dynamo');
 
 // Lambda Handler
 module.exports.handler = function(event, context, cb) {
-
-  lib.respond(event, function(error, response) {
-    return cb(error, response);
+  dynamo.getSites().then(function (sites) {
+    console.log(sites);
+    var html = lib.renderTemplate("delete/delete.html", {stage: event.stage, sites: sites});
+      return cb(null, html);
   });
 };
