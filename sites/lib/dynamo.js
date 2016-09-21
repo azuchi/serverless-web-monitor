@@ -44,6 +44,19 @@ module.exports.getSites = function() {
   });
 };
 
+module.exports.removeSite = function(site) {
+  return new Promise(function(resolve, reject) {
+    const params = {
+      TableName: sitesTable,
+      Key: site
+    };
+    docClient.delete(params, function(err, data) {
+      if (err) return reject(err);
+      return resolve(data);
+    });
+  })
+};
+
 module.exports.updateSiteState = function(site) {
   return new Promise(function(resolve, reject) {
     const params = {
