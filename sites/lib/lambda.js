@@ -4,6 +4,7 @@ const request = require('request');
 const AWS = require('aws-sdk');
 
 const projectName = process.env.SERVERLESS_PROJECT;
+const stage = process.env.SERVERLESS_STAGE;
 
 const lambdaConfig = {
   sessionToken: process.env.AWS_SESSION_TOKEN,
@@ -18,6 +19,7 @@ module.exports.checkSite = function(site) {
       FunctionName: projectName + '-probe',
       InvocationType: 'Event',
       LogType: 'Tail',
+      Qualifier: stage,
       Payload: JSON.stringify(site)
     }
     console.log(params);
@@ -35,6 +37,7 @@ module.exports.callSNS = function(message) {
       FunctionName: projectName + '-sns',
       InvocationType: 'Event',
       LogType: 'Tail',
+      Qualifier: stage,
       Payload: JSON.stringify(message)
     }
     console.log("Calling SNS function...");
